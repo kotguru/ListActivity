@@ -1,3 +1,3 @@
 # First android homework
-Using RecyclerView and FragmentLayout
+Using RecyclerView and Fragments
 
