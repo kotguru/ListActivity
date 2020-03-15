@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String MY_EXTRA = "MyExtra";
     private MyDataAdapter mAdapter;
 
     @Override
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         private final TextView textView;
 
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.number);
@@ -83,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         "clicked" + ' ' + myData.mNumber,
                         Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, second_activity.class);
+                intent.putExtra( MY_EXTRA, Integer.parseInt(String.valueOf(myData.mNumber)));
+                startActivity(intent);
             });
         }
     }
