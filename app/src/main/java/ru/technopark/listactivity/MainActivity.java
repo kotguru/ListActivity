@@ -9,25 +9,22 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity
         implements ListFragment.OnListFragmentInteractionListener{
 
-    public static final String MY_EXTRA = "MyExtra";
-    public static final String SAVED_STATE = "state";;
+    public static final String SAVED_STATE = "state";
 
-    private ListFragment Lfragment;
-    private Bundle savedInstanceState;
+    private ListFragment listFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("MyTAG", "MAIN:onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.savedInstanceState = savedInstanceState;
-        if(this.savedInstanceState == null) {
-            Lfragment = new ListFragment();
+        if(savedInstanceState == null) {
+            listFragment = new ListFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, Lfragment).commit();
+                    .add(R.id.container, listFragment).commit();
         } else {
-            Lfragment = (ListFragment) getSupportFragmentManager().getFragment(savedInstanceState, SAVED_STATE);
+            listFragment = (ListFragment) getSupportFragmentManager().getFragment(savedInstanceState, SAVED_STATE);
         }
     }
 
@@ -35,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         getSupportFragmentManager()
-                .putFragment(outState, SAVED_STATE, Lfragment);
+                .putFragment(outState, SAVED_STATE, listFragment);
     }
 
     @Override
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity
             ItemFragment fragment = ItemFragment.newInstance(item.mNumber, item.mColor);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .remove(Lfragment)
+                    .remove(listFragment)
                     .add(R.id.container, fragment)
                     .addToBackStack(null)
                     .commit();

@@ -48,7 +48,7 @@ public class ItemFragment extends Fragment {
         View view = inflater.inflate(R.layout.item_fragment, container, false);
         TextView textView = view.findViewById(R.id.num_text);
 
-        textView.setText(Integer.toString(text));
+        textView.setText(String.valueOf(text));
         textView.setTextColor(color);
 
         return view;

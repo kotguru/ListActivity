@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ListFragment extends Fragment {
 
@@ -45,14 +46,14 @@ public class ListFragment extends Fragment {
         Button button = view.findViewById(R.id.add_button);
         button.setOnClickListener(v -> {
             DataSource.addData(mAdapter.mData);
-            recyclerView.getAdapter().notifyDataSetChanged();
+            Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
         });
 
         return view;
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         Log.d("MyTAG", "LIST_FRAGM:onAttach");
 
         super.onAttach(context);
@@ -68,13 +69,13 @@ public class ListFragment extends Fragment {
         void onListFragmentInteraction(DataSource.MyData item);
     }
 
-    class MyDataAdapter extends RecyclerView.Adapter<MyViewHolder>{
+    static class MyDataAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
         List<DataSource.MyData> mData;
         OnListFragmentInteractionListener mListener;
 
 
-        public MyDataAdapter(List<DataSource.MyData> mData, OnListFragmentInteractionListener listener) {
+        MyDataAdapter(List<DataSource.MyData> mData, OnListFragmentInteractionListener listener) {
             this.mData = mData;
             this.mListener = listener;
         }
@@ -85,7 +86,7 @@ public class ListFragment extends Fragment {
             Log.d("MyTAG", "ADAPTER:onCreateViewHolder");
 
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-            return  new MyViewHolder(v);
+            return new MyViewHolder(v);
         }
 
         @Override
@@ -94,14 +95,11 @@ public class ListFragment extends Fragment {
 
             DataSource.MyData myData = mData.get(position);
 
-            holder.textView.setText(Integer.toString(myData.mNumber));
+            holder.textView.setText(String.valueOf(myData.mNumber));
             holder.textView.setTextColor(myData.mColor);
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (null != mListener) {
-                        mListener.onListFragmentInteraction(myData);
-                    }
+            holder.itemView.setOnClickListener(v -> {
+                if (null != mListener) {
+                    mListener.onListFragmentInteraction(myData);
                 }
             });
         }
@@ -112,12 +110,12 @@ public class ListFragment extends Fragment {
         }
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    static class MyViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView textView;
 
 
-        public MyViewHolder(@NonNull View itemView) {
+        MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.number);
         }
