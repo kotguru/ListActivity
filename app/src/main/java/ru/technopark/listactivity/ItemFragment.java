@@ -7,10 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 public class ItemFragment extends Fragment {
@@ -48,26 +45,11 @@ public class ItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("MyTAG", "ITEM_FRAGM:onCreateView");
-//        View v = inflater.inflate(R.layout.item_fragment, container, false);
-//        TextView textView = v.findViewById(R.id.frgmText);
-//        textView.setText(text);
-//        textView.setTextColor(ContextCompat.getColor(inflater.getContext(), color));
         View view = inflater.inflate(R.layout.item_fragment, container, false);
-        Log.d("MyTAG", "ITEM_FRAGM:onCreateView___11111111111");
-        //RecyclerView recyclerView = view.findViewById(R.id.list);
         TextView textView = view.findViewById(R.id.num_text);
-        Log.d("MyTAG", "ITEM_FRAGM:onCreateView___22222222222");
 
-        //  int a = text;
         textView.setText(Integer.toString(text));
         textView.setTextColor(color);
-     //   Log.d("MyTAG", "ITEM_FRAGM:onCreateView___333333333333");
-
-        //        mAdapter = new ListFragment.MyDataAdapter(DataSource.getInstance().getData(), mListener);
-//        recyclerView.setAdapter(mAdapter);
-//        int spanCount = getResources().getBoolean(R.bool.is_horizontal) ? 4 : 3;
-//        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), spanCount));
-
 
         return view;
     }

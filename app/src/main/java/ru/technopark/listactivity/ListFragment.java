@@ -1,7 +1,6 @@
 package ru.technopark.listactivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +16,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-
-import static ru.technopark.listactivity.MainActivity.MY_EXTRA;
 
 public class ListFragment extends Fragment {
 
@@ -124,20 +120,6 @@ public class ListFragment extends Fragment {
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.number);
-//            textView.setOnClickListener(view -> {
-//                int adapterPosition = getAdapterPosition();
-//                DataSource.MyData myData = mAdapter.mData.get(adapterPosition);
-//                Toast.makeText(view.getContext(),
-//                        "clicked" + ' ' + myData.mNumber,
-//                        Toast.LENGTH_SHORT).show();
-
-//                SingleItemFragment fragment = SingleItemFragment.newInstance(item.content, item.mColor);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.frgmCont, fragment).addToBackStack(null).commit();
-
-//                Intent intent = new Intent(view.getContext(), second_activity.class);
-//                intent.putExtra( MY_EXTRA, Integer.parseInt(String.valueOf(myData.mNumber)));
-//                startActivity(intent);
-//            });
         }
     }
 }
