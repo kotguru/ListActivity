@@ -98,7 +98,7 @@ public class ListFragment extends Fragment {
             holder.textView.setText(String.valueOf(myData.mNumber));
             holder.textView.setTextColor(myData.mColor);
             holder.itemView.setOnClickListener(v -> {
-                if (null != mListener) {
+                if (mListener != null) {
                     mListener.onListFragmentInteraction(myData);
                 }
             });
