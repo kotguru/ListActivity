@@ -30,13 +30,10 @@ public class ListFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d("MyTAG", "LIST_FRAGM:onCreateView");
-
-        View view = inflater.inflate(R.layout.list_fragment, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.list);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        final RecyclerView recyclerView = view.findViewById(R.id.list);
 
         mAdapter = new MyDataAdapter(DataSource.getInstance().getData(), mListener);
         recyclerView.setAdapter(mAdapter);
@@ -48,7 +45,14 @@ public class ListFragment extends Fragment {
             DataSource.addData(mAdapter.mData);
             Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
         });
+    }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("MyTAG", "LIST_FRAGM:onCreateView");
+
+        View view = inflater.inflate(R.layout.list_fragment, container, false);
         return view;
     }
 

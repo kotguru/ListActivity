@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity
             listFragment = new ListFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, listFragment).commit();
+                    .replace(R.id.container, listFragment)
+                    .commit();
         } else {
             listFragment = (ListFragment) getSupportFragmentManager().getFragment(savedInstanceState, SAVED_STATE);
         }
@@ -41,8 +42,9 @@ public class MainActivity extends AppCompatActivity
             ItemFragment fragment = ItemFragment.newInstance(item.mNumber, item.mColor);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .remove(listFragment)
-                    .add(R.id.container, fragment)
+                    .replace(R.id.container, fragment)
+//                    .remove(listFragment)
+//                    .add(R.id.container, fragment)
                     .addToBackStack(null)
                     .commit();
     }
